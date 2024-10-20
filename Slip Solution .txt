@@ -1,0 +1,350 @@
+﻿T.y Bsc(Cs) subject FDS practical Slip solutions 
+Q1.Write python program to create pie plot to get the frequency of the three species of the iris data (use iris.csv) 
+import pandas as pd 
+import matplotlib.pyplot as plt 
+# Read the Iris dataset from the CSV file iris_data = pd.read_csv('iris.csv') 
+# Count the frequency of each species species_counts = 
+iris_data['species'].value_counts() 
+# Create a pie plot 
+plt.figure(figsize=(8, 8)) 
+plt.pie(species_counts, 
+labels=species_counts.index,
+autopct='%1.1f%%', startangle=90, 
+colors=['#ff9999','#66b3ff','#99ff99']) 
+plt.title('Species Distribution in Iris Dataset') plt.show() 
+Q2. Write python program to view basic statistical details of the data (use 
+wineequality-red.csv) 
+import pandas as pd 
+# Read the wine dataset from the CSV file wine_data = pd.read_csv('winequality-red.csv') 
+# Display basic statistical details of the data print("Basic Statistical Details of the Wine Dataset:") 
+print(wine_data.describe()) 
+Q3. Write a python program for handling missing value, replace missing value of salary, age column with mean of that column (use Data.csv )
+import pandas as pd 
+# Read the dataset from the CSV file data = pd.read_csv('Data.csv') 
+# Display the original dataset 
+print("Original Dataset:") 
+print(data) 
+# Handle missing values by replacing them with the mean of the respective columns 
+data['Salary'].fillna(data['Salary'].mean(), inplace=True) 
+data['Age'].fillna(data['Age'].mean(), 
+inplace=True) 
+# Display the dataset after handling missing values 
+print("\nDataset After Handling Missing Values:") 
+print(data)
+Q4. Write python program to generate a line plot of name vs salary 
+import pandas as pd 
+import matplotlib.pyplot as plt 
+# Assuming you have a DataFrame with 'name' and 'salary' columns 
+# You can replace this with your actual data or load it from a CSV file 
+data = { 
+'name': ['John','Alice','Bob','Eve','Charlie'], 'salary': [50000, 60000, 75000, 55000, 80000] 
+} 
+df = pd.DataFrame(data) 
+# Generate a line plot of name vs salary
+plt.plot(df['name'], df['salary'], marker='o', linestyle='-', color='b') 
+plt.title('Name vs Salary') 
+plt.xlabel('Name') 
+plt.ylabel('Salary') 
+plt.grid(True) 
+plt.show() 
+Q5. Download the height and weight data set and load the data set from the given csv file into a dataframe . print the first and last 10 rows and random 20 rows also display the shape of the dataset 
+import pandas as pd 
+# Load the dataset into a DataFrame df = pd.read_csv('HeightWeight.csv') 
+# Display the first 10 rows
+print("First 10 rows:") 
+print(df.head(10)) 
+# Display the last 10 rows 
+print("Last 10 rows:") 
+print(df.tail(10)) 
+# Display 20 random rows 
+print("Random 20 rows:") 
+print(df.sample(20)) 
+# Display the shape of the dataset 
+print("Dataset shape:") 
+print(df.shape) 
+Q6. Write python program to create box plot to see how each feature sepal length,sepal width petal length petal width are distributed across the three species (use iris.csv) 
+import pandas as pd 
+import matplotlib.pyplot as plt
+# Read the Iris dataset from the CSV file iris_data = pd.read_csv('iris.csv') 
+# Create a box plot to visualize the distribution of each feature across species 
+plt.figure(figsize=(12, 8)) 
+# Sepal Length 
+plt.subplot(2, 2, 1) 
+plt.boxplot([iris_data[iris_data['species'] == 'setosa']['sepal_length'], 
+iris_data[iris_data['species'] == 
+'versicolor']['sepal_length'], 
+iris_data[iris_data['species'] == 
+'virginica']['sepal_length']], 
+labels=['setosa','versicolor','virginica']) plt.title('Sepal Length Distribution across Species') 
+# Sepal Width 
+plt.subplot(2, 2, 2)
+plt.boxplot([iris_data[iris_data['species'] == 'setosa']['sepal_width'], 
+iris_data[iris_data['species'] == 
+'versicolor']['sepal_width'], 
+iris_data[iris_data['species'] == 
+'virginica']['sepal_width']], 
+labels=['setosa','versicolor','virginica']) plt.title('Sepal Width Distribution across Species') 
+# Petal Length 
+plt.subplot(2, 2, 3) 
+plt.boxplot([iris_data[iris_data['species'] == 'setosa']['petal_length'], 
+iris_data[iris_data['species'] == 
+'versicolor']['petal_length'], 
+iris_data[iris_data['species'] == 
+'virginica']['petal_length']], 
+labels=['setosa','versicolor','virginica']) plt.title('Petal Length Distribution across Species')
+# Petal Width 
+plt.subplot(2, 2, 4) 
+plt.boxplot([iris_data[iris_data['species'] == 'setosa']['petal_width'], 
+iris_data[iris_data['species'] == 
+'versicolor']['petal_width'], 
+iris_data[iris_data['species'] == 
+'virginica']['petal_width']], 
+labels=['setosa','versicolor','virginica']) plt.title('Petal Width Distribution across Species') 
+plt.tight_layout() 
+plt.show() 
+Q7. Generate random array of 50 integers and display them using a line chart, scatter plot, histogram and box plot apply appropriate colors label and styling options .. 
+import numpy as np
+import matplotlib.pyplot as plt 
+# Generate a random array of 50 integers np.random.seed(42) # Setting seed for reproducibility 
+random_data = np.random.randint(0, 100, 50) 
+# Line chart 
+plt.figure(figsize=(12, 4)) 
+plt.subplot(1, 4, 1) 
+plt.plot(random_data, color='green', marker='o', linestyle='-', label='Random Data') 
+plt.title('Line Chart') 
+plt.xlabel('Index') 
+plt.ylabel('Value') 
+plt.legend() 
+# Scatter plot 
+plt.subplot(1, 4, 2) 
+plt.scatter(range(1, 51), random_data, color='blue', marker='o', label='Random Data') plt.title('Scatter Plot')
+plt.xlabel('Index') 
+plt.ylabel('Value') 
+plt.legend() 
+# Histogram 
+plt.subplot(1, 4, 3) 
+plt.hist(random_data, bins=10, color='orange', edgecolor='black') 
+plt.title('Histogram') 
+plt.xlabel('Value') 
+plt.ylabel('Frequency') 
+# Box plot 
+plt.subplot(1, 4, 4) 
+plt.boxplot(random_data, vert=False, widths=0.7, patch_artist=True, 
+boxprops=dict(facecolor='pink')) 
+plt.title('Box Plot') 
+plt.xlabel('Value') 
+plt.tight_layout() 
+plt.show()
+Q8.. Write a python program to perform the following tasks 
+a) Apply onehot encoding on country column 
+b) Apply label encoding on purchased column 
+(data.csv have two categorical columns country and purchase ) 
+import pandas as pd 
+from sklearn.preprocessing import 
+OneHotEncoder, LabelEncoder 
+# Assuming your dataset is named 'data.csv' 
+file_path = 'data.csv' 
+# Read the dataset into a DataFrame df = pd.read_csv(file_path) 
+# Display the original dataset
+print("Original Dataset:") 
+print(df) 
+# OneHot encoding on the 'country' column onehot_encoder = 
+OneHotEncoder(sparse=False, drop='first') # Using drop='first' to avoid multicollinearity onehot_encoded = 
+onehot_encoder.fit_transform(df[['Country']]) onehot_df = 
+pd.DataFrame(onehot_encoded, 
+columns=[f'Country_{int(category)}' for category in 
+range(onehot_encoded.shape[1])]) 
+# Concatenate the onehot-encoded DataFrame with the original DataFrame df = pd.concat([df, onehot_df], axis=1) df.drop('Country', axis=1, inplace=True) # Drop the original 'country' column 
+# Label encoding on the 'purchased' column
+label_encoder = LabelEncoder() 
+df['Purchased'] = 
+label_encoder.fit_transform(df['Purchased']) 
+# Display the modified dataset 
+print("\nModified Dataset:") 
+print(df) 
+Q9. Write a python program for the following tasks 
+Standardising data (Transform them into Gaussian distribution with a mean of 0 and standard deviation of 1 )(use winequality.csv) 
+import pandas as pd 
+from sklearn.preprocessing import StandardScaler 
+# Assuming your dataset is named 'winequality.csv' 
+file_path = 'winequality-red.csv'
+# Read the dataset into a DataFrame with semicolon as a separator 
+df = pd.read_csv(file_path, sep=';') 
+# Display the original dataset 
+print("Original Dataset:") 
+print(df.head()) 
+# Extract the features (excluding the target variable 'quality' if it exists) 
+features = df.drop('quality', axis=1) if 'quality' in df.columns else df 
+# Convert features to numeric (some columns might be in string format) features = features.apply(pd.to_numeric, errors='coerce') 
+# Standardize the features 
+scaler = StandardScaler()
+standardized_features = 
+scaler.fit_transform(features) 
+# Create a DataFrame with the standardized features 
+standardized_df = 
+pd.DataFrame(standardized_features, columns=features.columns) 
+# Display the standardized dataset print("\nStandardized Dataset:") print(standardized_df.head()) 
+Q10. Create two list one representing subject and other representing marks obtain in those subjects .Display the data in pie chart 
+import matplotlib.pyplot as plt 
+# Sample data
+subjects = ['Math','English','Science', 'History','Art'] 
+marks = [90, 85, 92, 88, 78] 
+# Plotting a pie chart 
+plt.figure(figsize=(8, 8)) 
+plt.pie(marks, labels=subjects, 
+autopct='%1.1f%%', startangle=90, colors=['skyblue','lightcoral','lightgreen', 'lightsalmon','lightblue']) 
+plt.title('Marks Distribution in Subjects') plt.show() 
+Q11. Write python program to display column-wise mean and median for HeightWeight dataset 
+import pandas as pd 
+# Assuming your dataset is named 'HeightWeight.csv' 
+file_path = 'HeightWeight.csv'
+# Read the dataset into a DataFrame df = pd.read_csv(file_path) 
+# Display the original dataset print("Original Dataset:") 
+print(df.head()) 
+# Calculate column-wise mean mean_values = df.mean() 
+# Calculate column-wise median median_values = df.median() 
+# Display the column-wise mean and median 
+print("\nColumn-wise Mean:") print(mean_values) 
+print("\nColumn-wise Median:") print(median_values)
+Q12. Write python program to compute sum of Manhattan distance between all pairs of points 
+def manhattan_distance(point1, point2): return abs(point1[0] - point2[0]) + abs(point1[1] - point2[1]) 
+def sum_of_manhattan_distances(points): n = len(points) 
+total_distance = 0 
+for i in range(n): 
+for j in range(i + 1, n): 
+total_distance += 
+manhattan_distance(points[i], points[j]) return total_distance 
+# Example usage 
+points = [(1, 2), (3, 4), (5, 6), (7, 8)]
+total_manhattan_distance = 
+sum_of_manhattan_distances(points) 
+print(f"Sum of Manhattan distances between all pairs of points: 
+{total_manhattan_distance}") 
+Q13. Write python program to create a graph to find relationship between the petal length and petal width 
+import pandas as pd 
+import matplotlib.pyplot as plt 
+# Assuming your dataset is named 'iris.csv' file_path = 'iris.csv' 
+# Read the dataset into a DataFrame df = pd.read_csv(file_path) 
+# Display the original dataset 
+print("Original Dataset:")
+print(df.head()) 
+# Scatter plot for petal length vs petal width plt.figure(figsize=(8, 6)) 
+plt.scatter(df['petal_length'], df['petal_width'], color='blue', alpha=0.7) 
+plt.title('Relationship between Petal Length and Petal Width') 
+plt.xlabel('Petal Length (cm)') 
+plt.ylabel('Petal Width (cm)') 
+plt.grid(True) 
+plt.show() 
+Q14. write a python program to find the maximum and minimum value of given flattened array 
+import numpy as np 
+# Example flattened array 
+flattened_array = np.array([1, 5, 3, 8, 2, 7, 10, 4])
+# Find maximum and minimum values max_value = np.max(flattened_array) min_value = np.min(flattened_array) 
+# Display the results 
+print(f"Maximum Value: {max_value}") print(f"Minimum Value: {min_value}") 
+Q15. Write a python program to create data frame of students information such as name, graduation percentage and age display average age of students average of graduation percentage 
+import pandas as pd 
+# Creating a DataFrame with students' information 
+data = { 
+'Name': ['Alice','Bob','Charlie','David', 'Emma'],
+'Graduation_Percentage': [85.5, 92.0, 78.5, 89.2, 95.8], 
+'Age': [22, 23, 21, 24, 22] 
+} 
+df = pd.DataFrame(data) 
+# Display the original DataFrame 
+print("Students' Information:") 
+print(df) 
+# Calculate average age and average graduation percentage 
+average_age = df['Age'].mean() 
+average_percentage = 
+df['Graduation_Percentage'].mean() 
+# Display the results 
+print(f"\nAverage Age of Students: 
+{average_age:.2f} years") 
+print(f"Average Graduation Percentage: {average_percentage:.2f}%")
+Q16: Write python program to draw a scatter plot to compare two features of iris dataset import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns # Seaborn for better visualization 
+# Assuming your dataset is named 'iris.csv' file_path = 'iris.csv' 
+# Read the dataset into a DataFrame df = pd.read_csv(file_path) 
+# Display the original dataset 
+print("Original Dataset:") 
+print(df.head()) 
+# Scatter plot to compare two features (e.g., petal length vs petal width) 
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='petal_length', y='petal_width', hue='species', data=df) 
+plt.title('Scatter Plot: Petal Length vs Petal Width') 
+plt.xlabel('Petal Length (cm)') 
+plt.ylabel('Petal Width (cm)') 
+plt.show() 
+Q17: Add two outliers to the above data set and display the box plot 
+import numpy as np 
+import matplotlib.pyplot as plt 
+# Generate a random array of 50 integers np.random.seed(42) 
+random_data = np.random.randint(0, 100, 50) 
+# Add two outliers 
+outliers = [150, 160] 
+data_with_outliers = 
+np.concatenate([random_data, outliers])
+# Display the box plot 
+plt.figure(figsize=(8, 6)) 
+plt.boxplot(data_with_outliers, vert=False, widths=0.7, patch_artist=True, 
+boxprops=dict(facecolor='lightblue')) plt.title('Box Plot with Outliers') 
+plt.xlabel('Value') 
+plt.show() 
+Q18: Import dataset “iris.csv”write a python program to create a bar plot to get the frequency of the iris data 
+B) Write python program to create histogram of the three species of the iris data import pandas as pd 
+import matplotlib.pyplot as plt 
+# Load the dataset into a DataFrame
+file_path = 'iris.csv' 
+df = pd.read_csv(file_path) 
+# Display the original dataset 
+print("Original Dataset:") 
+print(df.head()) 
+# Bar plot to get the frequency of the iris data plt.figure(figsize=(8, 6)) 
+df['species'].value_counts().plot(kind='bar', color=['skyblue','lightcoral','lightgreen']) plt.title('Frequency of Iris Species') plt.xlabel('Species') 
+plt.ylabel('Frequency') 
+plt.show() 
+# Histogram for each species 
+plt.figure(figsize=(12, 8)) 
+for species in df['species'].unique():
+plt.hist(df[df['species'] == 
+species]['petal_length'], bins=20, alpha=0.7, label=species) 
+plt.title('Histogram of Petal Length for Each Iris Species') 
+plt.xlabel('Petal Length (cm)') 
+plt.ylabel('Frequency') 
+plt.legend() 
+plt.show() 
+Q19 :Write python program to perform following tasks (winequality-red.csv) a) Normalizing the dataset using min max scaler class 
+b) Standardizing data 
+c) Binarizing using binary threshold import pandas as pd
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, Binarizer 
+# Assuming your dataset is named 'winequality-red.csv' 
+file_path = 'winequality-red.csv' 
+# Read the dataset into a DataFrame df = pd.read_csv(file_path, sep=';') 
+# Display the original dataset 
+print("Original Dataset:") 
+print(df.head()) 
+# 1. Normalizing the dataset using MinMaxScaler 
+scaler_minmax = MinMaxScaler() normalized_data = 
+scaler_minmax.fit_transform(df) 
+# Create a DataFrame with normalized data
+df_normalized = 
+pd.DataFrame(normalized_data, 
+columns=df.columns) 
+# Display the normalized dataset 
+print("\nNormalized Dataset:") 
+print(df_normalized.head()) 
+# 2. Standardizing data using StandardScaler scaler_standard = StandardScaler() standardized_data = 
+scaler_standard.fit_transform(df) 
+# Create a DataFrame with standardized data df_standardized = 
+pd.DataFrame(standardized_data, 
+columns=df.columns) 
+# Display the standardized dataset print("\nStandardized Dataset:") 
+print(df_standardized.head())
+# 3. Binarizing using binary threshold binarizer = Binarizer(threshold=0.5) # Adjust the threshold as needed 
+binarized_data = binarizer.transform(df) 
+# Create a DataFrame with binarized data df_binarized = pd.DataFrame(binarized_data, columns=df.columns) 
+# Display the binarized dataset 
+print("\nBinarized Dataset:") 
+print(df_binarized.head())
